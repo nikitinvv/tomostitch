@@ -148,8 +148,8 @@ if __name__ == "__main__":
 
     # Read data
     proj, flat, dark, theta = dxchange.read_aps_32id(
-        args.fname, sino=(0, 1000),proj = (0,3000,750))        
-    print(theta[np.arange(0,3000,750)])
+        args.fname, sino=(0, 1000),proj = (0,3000,100))        
+    print(theta[np.arange(0,3000,100)])
     # filter data        
     data = tomopy.normalize(proj, flat, dark)                
     # stitched data            
