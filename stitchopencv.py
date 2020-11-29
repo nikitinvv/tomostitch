@@ -56,6 +56,8 @@ def find_min_max(data):
     return mmin,mmax
 
 def register_shift_sift(datap1,datap2):
+    """Find shifts via SIFT detecting features"""
+
     mmin,mmax = find_min_max(datap1)
     sift = cv2.xfeatures2d.SIFT_create()
     shifts = np.zeros([datap1.shape[0],2],dtype='float32')
@@ -112,11 +114,11 @@ if __name__ == "__main__":
            
     args = parser.parse_args()
     
-    # Read data
+    # Read (0,90,180,270) degree angles to find shifts
     proj, flat, dark, theta = dxchange.read_aps_32id(
         args.fname, sino=(0, 1000),proj = (0,3000,750))        
     print(theta[np.arange(0,3000,750)])
-    # filter data        
+    # width of the  projection part used for registration
     w = 400
     data = tomopy.normalize(proj, flat, dark)                
     [ntheta,nz,n] = data.shape    
