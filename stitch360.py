@@ -163,8 +163,9 @@ if __name__ == "__main__":
     # dxchange.write_tiff(datap2[:,:,-w:]-np.mean(datap2[:,:,-w:]),'tc2.tiff',overwrite=True)
     shift = registration_shift_batch(datap1[:,:,0:w],datap2[:,:,-w:],upsample_factor=4)
     shift[:] = np.mean(shift,axis=0)
-    print('Average shift', shift)    
     shift[:,1] = (shift[:,1]-w/2)      
+    
+    print('Average shift', shift)    
     # resulting data
     datanew = merge(datap1,datap2,shift,ntheta//2)
     # dxchange.write_tiff_stack(datanew,'t/t.tiff',overwrite=True)    
